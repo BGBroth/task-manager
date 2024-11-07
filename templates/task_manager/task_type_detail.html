@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    {{ task_type.name }}
+    <a href="{% url 'task_manager:task-type-delete' pk=task_type.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+
+    <a href="{% url 'task_manager:task-type-update' pk=task_type.id %}" class="btn btn-secondary link-to-page">
+      Update
+    </a>
+  </h1>
+{% endblock %}
