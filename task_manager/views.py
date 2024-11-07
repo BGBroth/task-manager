@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
 from task_manager.forms import (
@@ -57,6 +58,25 @@ class TaskListView(generic.ListView):
         return Task.objects.all()
 
 
+class TaskDetailView(generic.DetailView):
+    model = Task
+
+
+class TaskCreateView(generic.CreateView):
+    model = Task
+    success_url = reverse_lazy("task_manager:task-list")
+
+
+class TaskUpdateView(generic.UpdateView):
+    model = Task
+    success_url = reverse_lazy("task_manager:task-list")
+
+
+class TaskDeleteView(generic.DeleteView):
+    model = Task
+    success_url = reverse_lazy("task_manager:task-list")
+
+
 class PositionListView(generic.ListView):
     model = Position
     paginate_by = 5
@@ -74,6 +94,25 @@ class PositionListView(generic.ListView):
         if name:
             return Position.objects.filter(name__icontains=name)
         return Position.objects.all()
+
+
+class PositionDetailView(generic.DetailView):
+    model = Position
+
+
+class PositionCreateView(generic.CreateView):
+    model = Position
+    success_url = reverse_lazy("task_manager:position-list")
+
+
+class PositionUpdateView(generic.UpdateView):
+    model = Position
+    success_url = reverse_lazy("task_manager:position-list")
+
+
+class PositionDeleteView(generic.DeleteView):
+    model = Position
+    success_url = reverse_lazy("task_manager:position-list")
 
 
 class WorkerListView(generic.ListView):
@@ -96,6 +135,25 @@ class WorkerListView(generic.ListView):
         return Worker.objects.all()
 
 
+class WorkerDetailView(generic.DetailView):
+    model = Worker
+
+
+class WorkerCreateView(generic.CreateView):
+    model = Worker
+    success_url = reverse_lazy("task_manager:worker-list")
+
+
+class WorkerUpdateView(generic.UpdateView):
+    model = Worker
+    success_url = reverse_lazy("task_manager:worker-list")
+
+
+class WorkerDeleteView(generic.DeleteView):
+    model = Worker
+    success_url = reverse_lazy("task_manager:worker-list")
+
+
 class TaskTypeListView(generic.ListView):
     model = TaskType
     paginate_by = 5
@@ -113,3 +171,22 @@ class TaskTypeListView(generic.ListView):
         if name:
             return TaskType.objects.filter(name__icontains=name)
         return TaskType.objects.all()
+
+
+class TaskTypeDetailView(generic.DetailView):
+    model = TaskType
+
+
+class TaskTypeCreateView(generic.CreateView):
+    model = TaskType
+    success_url = reverse_lazy("task_manager:task-type-list")
+
+
+class TaskTypeUpdateView(generic.UpdateView):
+    model = TaskType
+    success_url = reverse_lazy("task_manager:task-type-list")
+
+
+class TaskTypeDeleteView(generic.DeleteView):
+    model = TaskType
+    success_url = reverse_lazy("task_manager:task-type-list")
