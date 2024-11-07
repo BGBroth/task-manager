@@ -1,6 +1,12 @@
 from django.shortcuts import render
 from django.views import generic
 
+from task_manager.forms import (
+    TaskSearchForm,
+    PositionSearchForm,
+    WorkerSearchForm,
+    TaskTypeSearchForm
+)
 from task_manager.models import (
     Position,
     Worker,
