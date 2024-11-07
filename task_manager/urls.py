@@ -25,3 +25,5 @@ urlpatterns = [
         name="position-list",
     ),
 ]
+
+app_name = "task_manager"
