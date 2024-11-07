@@ -157,6 +157,7 @@ class WorkerDeleteView(generic.DeleteView):
 class TaskTypeListView(generic.ListView):
     model = TaskType
     paginate_by = 5
+    template_name = "task_manager/task_type_list.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskTypeListView, self).get_context_data(**kwargs)
@@ -175,18 +176,23 @@ class TaskTypeListView(generic.ListView):
 
 class TaskTypeDetailView(generic.DetailView):
     model = TaskType
+    template_name = "task_manager/task_type_detail.html"
+
 
 
 class TaskTypeCreateView(generic.CreateView):
     model = TaskType
+    template_name = "task_manager/task_type_form.html"
     success_url = reverse_lazy("task_manager:task-type-list")
 
 
 class TaskTypeUpdateView(generic.UpdateView):
     model = TaskType
+    template_name = "task_manager/task_type_form.html"
     success_url = reverse_lazy("task_manager:task-type-list")
 
 
 class TaskTypeDeleteView(generic.DeleteView):
     model = TaskType
+    template_name = "task_manager/task_type_confirm_delete.html"
     success_url = reverse_lazy("task_manager:task-type-list")
