@@ -5,6 +5,9 @@ from django.contrib.auth.models import AbstractUser
 class Position(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
+    class Meta:
+        db_table = "task_manager_position"
+
 
 class Worker(AbstractUser):
     position = models.ForeignKey(Position, on_delete=models.SET_NULL, null=True, related_name="workers")
@@ -12,6 +15,9 @@ class Worker(AbstractUser):
 
 class TaskType(models.Model):
     name = models.CharField(max_length=100, unique=True)
+
+    class Meta:
+        db_table = "task_manager_task_type"
 
 
 class Task(models.Model):
