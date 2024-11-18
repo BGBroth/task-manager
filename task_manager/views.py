@@ -64,11 +64,13 @@ class TaskDetailView(generic.DetailView):
 
 class TaskCreateView(generic.CreateView):
     model = Task
+    fields = "__all__"
     success_url = reverse_lazy("task_manager:task-list")
 
 
 class TaskUpdateView(generic.UpdateView):
     model = Task
+    fields = "__all__"
     success_url = reverse_lazy("task_manager:task-list")
 
 
@@ -102,11 +104,13 @@ class PositionDetailView(generic.DetailView):
 
 class PositionCreateView(generic.CreateView):
     model = Position
+    fields = "__all__"
     success_url = reverse_lazy("task_manager:position-list")
 
 
 class PositionUpdateView(generic.UpdateView):
     model = Position
+    fields = "__all__"
     success_url = reverse_lazy("task_manager:position-list")
 
 
@@ -157,6 +161,7 @@ class WorkerDeleteView(generic.DeleteView):
 class TaskTypeListView(generic.ListView):
     model = TaskType
     paginate_by = 5
+    context_object_name = 'task_type_list'
     template_name = "task_manager/task_type_list.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -176,23 +181,27 @@ class TaskTypeListView(generic.ListView):
 
 class TaskTypeDetailView(generic.DetailView):
     model = TaskType
+    context_object_name = 'task_type'
     template_name = "task_manager/task_type_detail.html"
 
 
 
 class TaskTypeCreateView(generic.CreateView):
     model = TaskType
+    fields = "__all__"
     template_name = "task_manager/task_type_form.html"
     success_url = reverse_lazy("task_manager:task-type-list")
 
 
 class TaskTypeUpdateView(generic.UpdateView):
     model = TaskType
+    fields = "__all__"
     template_name = "task_manager/task_type_form.html"
     success_url = reverse_lazy("task_manager:task-type-list")
 
 
 class TaskTypeDeleteView(generic.DeleteView):
     model = TaskType
+    context_object_name = 'task_type'
     template_name = "task_manager/task_type_confirm_delete.html"
     success_url = reverse_lazy("task_manager:task-type-list")
