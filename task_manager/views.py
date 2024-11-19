@@ -207,3 +207,5 @@ class TaskTypeDeleteView(generic.DeleteView):
     context_object_name = 'task_type'
     template_name = "task_manager/task_type_confirm_delete.html"
     success_url = reverse_lazy("task_manager:task-type-list")
+
+

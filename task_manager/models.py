@@ -20,6 +20,21 @@ class TaskType(models.Model):
         db_table = "task_manager_task_type"
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+
+class Team(models.Model):
+    name = models.CharField(max_length=255)
+    members = models.ManyToManyField(Worker, related_name="teams")
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+    team = models.ForeignKey(Team, on_delete=models.SET_NULL, null=True, related_name="projects")
+
+
 class Task(models.Model):
     PRIORITY_CHOICES = [
         ('Urgent', 'Urgent'),
@@ -35,3 +50,5 @@ class Task(models.Model):
     priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES)
     task_type = models.ForeignKey(TaskType, on_delete=models.SET_NULL, null=True, related_name="tasks")
     assignees = models.ManyToManyField(Worker, related_name="tasks")
+    project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True, related_name="tasks")
+    tags = models.ManyToManyField(Tag, related_name="tasks", blank=True)
