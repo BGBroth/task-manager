@@ -1,14 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    {{ worker.username }}
-    <a href="{% url 'task_manager:worker-delete' pk=worker.id %}" class="btn btn-danger link-to-page">
-      Delete
-    </a>
+	<h1>
+		{{ worker.username }}
+		<a href="{% url 'task_manager:worker-delete' pk=worker.id %}" class="btn btn-danger link-to-page">
+			Delete
+		</a>
 
-    <a href="{% url 'task_manager:worker-update' pk=worker.id %}" class="btn btn-secondary link-to-page">
-      Update
-    </a>
-  </h1>
+		<a href="{% url 'task_manager:worker-update' pk=worker.id %}" class="btn btn-secondary link-to-page">
+			Update
+		</a>
+	</h1>
+	<hr>
+	<p>Position: {{ worker.position.name }}</p>
+	<hr>
+	<ul>
+		{% for task in task_type.tasks.all %}
+			<li>{{ task.name }}</li>
+		{% endfor %}
+	</ul>
 {% endblock %}

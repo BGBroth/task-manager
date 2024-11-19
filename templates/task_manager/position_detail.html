@@ -11,4 +11,10 @@
       Update
     </a>
   </h1>
+	<hr>
+  <ul>
+    {% for worker in position.workers.all %}
+      <li>{{ worker.username }} ({{ worker.first_name }} {{ worker.last_name }})</li>
+    {% endfor %}
+  </ul>
 {% endblock %}
