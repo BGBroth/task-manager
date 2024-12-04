@@ -12,7 +12,7 @@ from task_manager.models import (
     Position,
     Worker,
     TaskType,
-    Task
+    Task, Tag, Project, Team
 )
 
 
@@ -187,7 +187,6 @@ class TaskTypeDetailView(generic.DetailView):
     template_name = "task_manager/task_type_detail.html"
 
 
-
 class TaskTypeCreateView(generic.CreateView):
     model = TaskType
     fields = "__all__"
@@ -209,3 +208,122 @@ class TaskTypeDeleteView(generic.DeleteView):
     success_url = reverse_lazy("task_manager:task-type-list")
 
 
+class TagListView(generic.ListView):
+    model = Tag
+    paginate_by = 5
+    queryset = Tag.objects.all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TagListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name")
+        context["search_form"] = TaskTypeSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    def get_queryset(self):
+        name = self.request.GET.get("name")
+        if name:
+            return Tag.objects.filter(name__icontains=name)
+        return Tag.objects.all()
+
+
+class TagDetailView(generic.DetailView):
+    model = Tag
+
+
+class TagCreateView(generic.CreateView):
+    model = Tag
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:tag-list")
+
+
+class TagUpdateView(generic.UpdateView):
+    model = Tag
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:tag-list")
+
+
+class TagDeleteView(generic.DeleteView):
+    model = Tag
+    success_url = reverse_lazy("task_manager:tag-list")
+
+
+class ProjectListView(generic.ListView):
+    model = Project
+    paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProjectListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name")
+        context["search_form"] = TaskTypeSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    def get_queryset(self):
+        name = self.request.GET.get("name")
+        if name:
+            return Project.objects.filter(name__icontains=name)
+        return Project.objects.all()
+
+
+class ProjectDetailView(generic.DetailView):
+    model = Project
+
+
+class ProjectCreateView(generic.CreateView):
+    model = Project
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:project-list")
+
+
+class ProjectUpdateView(generic.UpdateView):
+    model = Project
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:project-list")
+
+
+class ProjectDeleteView(generic.DeleteView):
+    model = Project
+    success_url = reverse_lazy("task_manager:project-list")
+
+
+class TeamListView(generic.ListView):
+    model = Team
+    paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TeamListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name")
+        context["search_form"] = TaskTypeSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    def get_queryset(self):
+        name = self.request.GET.get("name")
+        if name:
+            return Team.objects.filter(name__icontains=name)
+        return Team.objects.all()
+
+
+class TeamDetailView(generic.DetailView):
+    model = Team
+
+
+class TeamCreateView(generic.CreateView):
+    model = Team
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:team-list")
+
+
+class TeamUpdateView(generic.UpdateView):
+    model = Team
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:team-list")
+
+
+class TeamDeleteView(generic.DeleteView):
+    model = Team
+    success_url = reverse_lazy("task_manager:team-list")
