@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>
+		Tag list
+		<a href="{% url 'task_manager:tag-create' %}" class="btn btn-primary link-to-page">
+			Create
+		</a>
+	</h1>
+	<form method="get" action="">
+		{{ search_form }}
+		<input type="submit" value="Search" class="btn btn-primary">
+	</form>
+	{% if tag_list %}
+		<ul>
+			{% for tag in tag_list %}
+				<li>
+					<a href="{% url "task_manager:tag-detail" pk=tag.id %} ">{{ tag.id }}</a>
+					{{ tag.name }}
+				</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>There are no tags in task_manager</p>
+	{% endif %}
+{% endblock %}

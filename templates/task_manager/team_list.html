@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>
+		Team list
+		<a href="{% url 'task_manager:team-create' %}" class="btn btn-primary link-to-page">
+			Create
+		</a>
+	</h1>
+	<form method="get" action="">
+		{{ search_form }}
+		<input type="submit" value="Search" class="btn btn-primary">
+	</form>
+	{% if team_list %}
+		<ul>
+			{% for team in team_list %}
+				<li>
+					<a href="{% url "task_manager:team-detail" pk=team.id %} ">{{ team.id }}</a>
+					{{ team.name }}
+				</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>There are no teams in task_manager</p>
+	{% endif %}
+{% endblock %}
