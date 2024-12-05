@@ -59,9 +59,9 @@ class WorkerListView(generic.ListView):
         return context
 
     def get_queryset(self):
-        name = self.request.GET.get("name")
-        if name:
-            return Worker.objects.filter(name__icontains=name)
+        username = self.request.GET.get("username")
+        if username:
+            return Worker.objects.filter(username__icontains=username)
         return Worker.objects.all()
 
 

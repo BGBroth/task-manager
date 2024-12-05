@@ -19,9 +19,9 @@ class TaskListView(generic.ListView):
         return context
 
     def get_queryset(self):
-        model = self.request.GET.get("model")
-        if model:
-            return Task.objects.filter(model__icontains=model)
+        name = self.request.GET.get("name")
+        if name:
+            return Task.objects.filter(name__icontains=name)
         return Task.objects.all()
 
 
