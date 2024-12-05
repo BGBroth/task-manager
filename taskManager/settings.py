@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "debug_toolbar",
     "task_manager",
+    "workers",
+    "tasks",
+    "projects",
 ]
 
 MIDDLEWARE = [
@@ -102,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = "task_manager.Worker"
+AUTH_USER_MODEL = "workers.Worker"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

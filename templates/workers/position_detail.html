@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>
+		{{ position.name }}
+		<a href="{% url 'workers:position-delete' pk=position.id %}" class="btn btn-danger link-to-page">
+			Delete
+		</a>
+
+		<a href="{% url 'workers:position-update' pk=position.id %}" class="btn btn-secondary link-to-page">
+			Update
+		</a>
+	</h1>
+
+	<hr>
+
+	Workers:
+	<ul>
+		{% for worker in position.workers.all %}
+			<li>
+				<a href="{% url 'workers:worker-detail' pk=worker.id %}">
+					{{ worker.username }} ({{ worker.first_name }} {{ worker.last_name }})
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

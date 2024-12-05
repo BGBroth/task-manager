@@ -3,7 +3,7 @@
 {% block content %}
 	<h1>
 		Worker list
-		<a href="{% url 'task_manager:worker-create' %}" class="btn btn-primary link-to-page">
+		<a href="{% url 'workers:worker-create' %}" class="btn btn-primary link-to-page">
 			Create
 		</a>
 	</h1>
@@ -16,7 +16,7 @@
 		<ul>
 			{% for worker in worker_list %}
 				<li>
-					<a href="{% url "task_manager:worker-detail" pk=worker.id %} ">{{ worker.id }}</a>
+					<a href="{% url "workers:worker-detail" pk=worker.id %} ">{{ worker.id }}</a>
 					{{ worker.username }}
 				</li>
 			{% endfor %}

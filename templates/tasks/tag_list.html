@@ -3,7 +3,7 @@
 {% block content %}
 	<h1>
 		Tag list
-		<a href="{% url 'task_manager:tag-create' %}" class="btn btn-primary link-to-page">
+		<a href="{% url 'tasks:tag-create' %}" class="btn btn-primary link-to-page">
 			Create
 		</a>
 	</h1>
@@ -15,7 +15,7 @@
 		<ul>
 			{% for tag in tag_list %}
 				<li>
-					<a href="{% url "task_manager:tag-detail" pk=tag.id %} ">{{ tag.id }}</a>
+					<a href="{% url "tasks:tag-detail" pk=tag.id %} ">{{ tag.id }}</a>
 					{{ tag.name }}
 				</li>
 			{% endfor %}

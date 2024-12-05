@@ -3,7 +3,7 @@
 {% block content %}
 	<h1>
 		Task Type List
-		<a href="{% url 'task_manager:task-type-create' %}" class="btn btn-primary link-to-page">
+		<a href="{% url 'tasks:task-type-create' %}" class="btn btn-primary link-to-page">
 			Create
 		</a>
 	</h1>
@@ -15,7 +15,7 @@
 		<ul>
 			{% for task_type in task_type_list %}
 				<li>
-					<a href="{% url "task_manager:task-type-detail" pk=task_type.id %} ">{{ task_type.id }}</a>
+					<a href="{% url "tasks:task-type-detail" pk=task_type.id %} ">{{ task_type.id }}</a>
 					{{ task_type.name }}
 				</li>
 			{% endfor %}
