@@ -33,7 +33,6 @@ class Task(models.Model):
     task_type = models.ForeignKey(
         TaskType, on_delete=models.SET_NULL, null=True, related_name="tasks"
     )
-    workers = models.ManyToManyField(Worker, related_name="tasks")
     project = models.ForeignKey(
         Project, on_delete=models.SET_NULL, null=True, related_name="tasks"
     )
