@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -5,7 +6,7 @@ from projects.forms import ProjectSearchForm, TeamSearchForm
 from projects.models import Project, Team
 
 
-class ProjectListView(generic.ListView):
+class ProjectListView(LoginRequiredMixin, generic.ListView):
     model = Project
     paginate_by = 5
 
@@ -24,28 +25,28 @@ class ProjectListView(generic.ListView):
         return Project.objects.all()
 
 
-class ProjectDetailView(generic.DetailView):
+class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
     model = Project
 
 
-class ProjectCreateView(generic.CreateView):
-    model = Project
-    fields = "__all__"
-    success_url = reverse_lazy("projects:project-list")
-
-
-class ProjectUpdateView(generic.UpdateView):
+class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
     model = Project
     fields = "__all__"
     success_url = reverse_lazy("projects:project-list")
 
 
-class ProjectDeleteView(generic.DeleteView):
+class ProjectUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Project
+    fields = "__all__"
+    success_url = reverse_lazy("projects:project-list")
+
+
+class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Project
     success_url = reverse_lazy("projects:project-list")
 
 
-class TeamListView(generic.ListView):
+class TeamListView(LoginRequiredMixin, generic.ListView):
     model = Team
     paginate_by = 5
 
@@ -64,22 +65,22 @@ class TeamListView(generic.ListView):
         return Team.objects.all()
 
 
-class TeamDetailView(generic.DetailView):
+class TeamDetailView(LoginRequiredMixin, generic.DetailView):
     model = Team
 
 
-class TeamCreateView(generic.CreateView):
-    model = Team
-    fields = "__all__"
-    success_url = reverse_lazy("projects:team-list")
-
-
-class TeamUpdateView(generic.UpdateView):
+class TeamCreateView(LoginRequiredMixin, generic.CreateView):
     model = Team
     fields = "__all__"
     success_url = reverse_lazy("projects:team-list")
 
 
-class TeamDeleteView(generic.DeleteView):
+class TeamUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Team
+    fields = "__all__"
+    success_url = reverse_lazy("projects:team-list")
+
+
+class TeamDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Team
     success_url = reverse_lazy("projects:team-list")

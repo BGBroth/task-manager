@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.urls import reverse_lazy
 
@@ -5,7 +6,7 @@ from workers.forms import PositionSearchForm, WorkerSearchForm, WorkerCreationFo
 from workers.models import Position, Worker
 
 
-class PositionListView(generic.ListView):
+class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
     paginate_by = 5
 
@@ -24,28 +25,28 @@ class PositionListView(generic.ListView):
         return Position.objects.all()
 
 
-class PositionDetailView(generic.DetailView):
+class PositionDetailView(LoginRequiredMixin, generic.DetailView):
     model = Position
 
 
-class PositionCreateView(generic.CreateView):
-    model = Position
-    fields = "__all__"
-    success_url = reverse_lazy("workers:position-list")
-
-
-class PositionUpdateView(generic.UpdateView):
+class PositionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Position
     fields = "__all__"
     success_url = reverse_lazy("workers:position-list")
 
 
-class PositionDeleteView(generic.DeleteView):
+class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("workers:position-list")
+
+
+class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Position
     success_url = reverse_lazy("workers:position-list")
 
 
-class WorkerListView(generic.ListView):
+class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     paginate_by = 5
     queryset = Worker.objects.select_related("position")
@@ -65,22 +66,22 @@ class WorkerListView(generic.ListView):
         return Worker.objects.all()
 
 
-class WorkerDetailView(generic.DetailView):
+class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Worker
 
 
-class WorkerCreateView(generic.CreateView):
-    model = Worker
-    form_class = WorkerCreationForm
-    success_url = reverse_lazy("workers:worker-list")
-
-
-class WorkerUpdateView(generic.UpdateView):
+class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Worker
     form_class = WorkerCreationForm
     success_url = reverse_lazy("workers:worker-list")
 
 
-class WorkerDeleteView(generic.DeleteView):
+class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Worker
+    form_class = WorkerCreationForm
+    success_url = reverse_lazy("workers:worker-list")
+
+
+class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Worker
     success_url = reverse_lazy("workers:worker-list")

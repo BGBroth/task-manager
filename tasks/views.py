@@ -1,11 +1,12 @@
 from django.urls import reverse_lazy
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from tasks.forms import TagSearchForm, TaskTypeSearchForm, TaskSearchForm
 from tasks.models import Task, TaskType, Tag
 
 
-class TaskListView(generic.ListView):
+class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     paginate_by = 5
     queryset = Task.objects.select_related("task_type")
@@ -25,28 +26,28 @@ class TaskListView(generic.ListView):
         return Task.objects.all()
 
 
-class TaskDetailView(generic.DetailView):
+class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
 
 
-class TaskCreateView(generic.CreateView):
-    model = Task
-    fields = "__all__"
-    success_url = reverse_lazy("tasks:task-list")
-
-
-class TaskUpdateView(generic.UpdateView):
+class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
     fields = "__all__"
     success_url = reverse_lazy("tasks:task-list")
 
 
-class TaskDeleteView(generic.DeleteView):
+class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Task
+    fields = "__all__"
+    success_url = reverse_lazy("tasks:task-list")
+
+
+class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Task
     success_url = reverse_lazy("tasks:task-list")
 
 
-class TaskTypeListView(generic.ListView):
+class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     paginate_by = 5
     context_object_name = 'task_type_list'
@@ -67,34 +68,34 @@ class TaskTypeListView(generic.ListView):
         return TaskType.objects.all()
 
 
-class TaskTypeDetailView(generic.DetailView):
+class TaskTypeDetailView(LoginRequiredMixin, generic.DetailView):
     model = TaskType
     context_object_name = 'task_type'
     template_name = "tasks/task_type_detail.html"
 
 
-class TaskTypeCreateView(generic.CreateView):
+class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = TaskType
     fields = "__all__"
     template_name = "tasks/task_type_form.html"
     success_url = reverse_lazy("tasks:task-type-list")
 
 
-class TaskTypeUpdateView(generic.UpdateView):
+class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = TaskType
     fields = "__all__"
     template_name = "tasks/task_type_form.html"
     success_url = reverse_lazy("tasks:task-type-list")
 
 
-class TaskTypeDeleteView(generic.DeleteView):
+class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = TaskType
     context_object_name = 'task_type'
     template_name = "tasks/task_type_confirm_delete.html"
     success_url = reverse_lazy("tasks:task-type-list")
 
 
-class TagListView(generic.ListView):
+class TagListView(LoginRequiredMixin, generic.ListView):
     model = Tag
     paginate_by = 5
     queryset = Tag.objects.all()
@@ -114,22 +115,22 @@ class TagListView(generic.ListView):
         return Tag.objects.all()
 
 
-class TagDetailView(generic.DetailView):
+class TagDetailView(LoginRequiredMixin, generic.DetailView):
     model = Tag
 
 
-class TagCreateView(generic.CreateView):
-    model = Tag
-    fields = "__all__"
-    success_url = reverse_lazy("tasks:tag-list")
-
-
-class TagUpdateView(generic.UpdateView):
+class TagCreateView(LoginRequiredMixin, generic.CreateView):
     model = Tag
     fields = "__all__"
     success_url = reverse_lazy("tasks:tag-list")
 
 
-class TagDeleteView(generic.DeleteView):
+class TagUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Tag
+    fields = "__all__"
+    success_url = reverse_lazy("tasks:tag-list")
+
+
+class TagDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Tag
     success_url = reverse_lazy("tasks:tag-list")
