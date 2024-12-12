@@ -7,7 +7,13 @@ class TaskSearchForm(forms.Form):
         required=False,
         label="",
         widget=forms.TextInput(
-            attrs={"placeholder": "Search by task name"}
+            attrs={"placeholder": "Search by task name",
+                   "class": "form-control search-bar-short",
+                   "id": "topbarInputIconLeft",
+                   "aria-label": "Search",
+                   "aria-describedby": "search-button",
+                   "style": "max-width: 250px; width: 100%;"
+                   }
         )
     )
 
@@ -18,7 +24,13 @@ class TaskTypeSearchForm(forms.Form):
         required=False,
         label="",
         widget=forms.TextInput(
-            attrs={"placeholder": "Search by task type"}
+            attrs={"placeholder": "Search by task type",
+                   "class": "form-control search-bar-short",
+                   "id": "topbarInputIconLeft",
+                   "aria-label": "Search",
+                   "aria-describedby": "search-button",
+                   "style": "max-width: 250px; width: 100%;"
+                   }
         )
     )
 
@@ -29,6 +41,12 @@ class TagSearchForm(forms.Form):
         required=False,
         label="",
         widget=forms.TextInput(
-            attrs={"placeholder": "Search by tag name"}
+            attrs={"placeholder": "Search by tag name",
+                   "class": "form-control search-bar-short",
+                   "id": "topbarInputIconLeft",
+                   "aria-label": "Search",
+                   "aria-describedby": "search-button",
+                   "style": "max-width: 250px; width: 100%;"
+                   }
         )
     )

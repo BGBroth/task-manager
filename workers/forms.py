@@ -20,9 +20,17 @@ class WorkerSearchForm(forms.Form):
         required=False,
         label="",
         widget=forms.TextInput(
-            attrs={"placeholder": "Search by worker name"}
+            attrs={
+                "placeholder": "Search by worker name",
+                "class": "form-control search-bar-short",
+                "id": "topbarInputIconLeft",
+                "aria-label": "Search",
+                "aria-describedby": "search-button",
+                "style": "max-width: 250px; width: 100%;"
+            }
         )
     )
+
 
 
 class PositionSearchForm(forms.Form):
@@ -31,6 +39,12 @@ class PositionSearchForm(forms.Form):
         required=False,
         label="",
         widget=forms.TextInput(
-            attrs={"placeholder": "Search by position name"}
+            attrs={"placeholder": "Search by position name",
+                   "class": "form-control search-bar-short",
+                   "id": "topbarInputIconLeft",
+                   "aria-label": "Search",
+                   "aria-describedby": "search-button",
+                   "style": "max-width: 250px; width: 100%;"
+                   }
         )
     )
