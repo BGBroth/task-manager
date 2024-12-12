@@ -7,9 +7,11 @@
 			Create
 		</a>
 	</h1>
-	<form method="get" action="">
-		{{ search_form }}
-		<input type="submit" value="Search" class="btn btn-primary">
+	<form class="navbar-search form-inline" id="navbar-search-main" method="get" action="">
+		<div class="input-group input-group-merge search-bar">
+			<input type="submit" value="🔍" class="btn btn-sm btn-outline-gray-600">
+			{{ search_form }}
+		</div>
 	</form>
 	{% if task_list %}
 		<ul>
