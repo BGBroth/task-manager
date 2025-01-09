@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from tasks.models import Task, TaskType
 from workers.models import Worker, Position
 
 
+@login_required
 def index(request):
     """View function for the home page of the site."""
 
