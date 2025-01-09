@@ -14,18 +14,53 @@
 		</div>
 	</form>
 
-
-
+	<br>
 
 	{% if worker_list %}
-		<ul>
-			{% for worker in worker_list %}
-				<li>
-					<a href="{% url "workers:worker-detail" pk=worker.id %}">{{ worker.id }}</a>
-					{{ worker.username }}
-				</li>
-			{% endfor %}
-		</ul>
+		<div class="card border-0 shadow mb-4">
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-centered table-nowrap mb-0 rounded">
+						<thead class="thead-light">
+						<tr>
+							<th class="border-0 rounded-start">#</th>
+							<th class="border-0">Username</th>
+							<th class="border-0">First Name</th>
+							<th class="border-0">Last Name</th>
+							<th class="border-0">Position</th>
+							<th class="border-0 rounded-end">Email</th>
+						</tr>
+						</thead>
+						<tbody>
+						<!-- Item -->
+						{% for worker in worker_list %}
+							<tr>
+								<td>
+									<a href="{% url "workers:worker-detail" pk=worker.id %}">{{ worker.id }}</a>
+								</td>
+								<td>
+									<a href="{% url "workers:worker-detail" pk=worker.id %}">{{ worker.username }}</a>
+								</td>
+								<td>
+									<a href="{% url "workers:worker-detail" pk=worker.id %}">{{ worker.first_name }}</a>
+								</td>
+								<td>
+									<a href="{% url "workers:worker-detail" pk=worker.id %}">{{ worker.last_name }}</a>
+								</td>
+								<td>
+									<a href="{% url "workers:position-detail" pk=worker.position.id %}">{{ worker.position }}</a>
+								</td>
+								<td>
+									<a href="{% url "workers:worker-detail" pk=worker.id %}">{{ worker.email }}</a>
+								</td>
+							</tr>
+						{% endfor %}
+						<!-- End of Item -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	{% else %}
 		<p>There are no workers in task_manager</p>
 	{% endif %}
