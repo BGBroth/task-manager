@@ -1,3 +1,4 @@
+{% if user.is_authenticated %}
 <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
 	<a class="navbar-brand me-lg-5" href="/">
 		<img class="navbar-brand-dark" src="{{ ASSETS_ROOT }}/img/brand/light.svg" alt="Volt logo"/> <img
@@ -168,7 +169,7 @@
 			</li>
 			<li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
 			<li class="nav-item">
-				<a href="{% url 'logout' %}" class="nav-link">
+				<a href="{% url 'logout' %}?next=/" class="nav-link">
                     <span class="sidebar-icon">
                         <svg class="icon icon-xs text-danger me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
 														 xmlns="http://www.w3.org/2000/svg">
@@ -182,3 +183,4 @@
 		</ul>
 	</div>
 </nav>
+{% endif %}

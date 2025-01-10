@@ -31,7 +31,7 @@
 								My Profile
 							</a>
 							<div role="separator" class="dropdown-divider my-1"></div>
-							<a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}">
+							<a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}?next=/">
 								<svg class="dropdown-icon text-danger me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
 										 xmlns="http://www.w3.org/2000/svg">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -43,7 +43,7 @@
 					</li>
 				{% else %}
 					<li class="nav-item ms-lg-3">
-						<a class="nav-link pt-1 px-0" href="{% url 'login' %}">
+						<a class="nav-link pt-1 px-0" href="{% url 'login' %}?next=/">
 							<span class="mb-0 font-small fw-bold text-gray-900">
 							Login
 							</span>
