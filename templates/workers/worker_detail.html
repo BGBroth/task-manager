@@ -38,7 +38,7 @@
 
 	Tasks:
 	<ul>
-		{% for task in worker.tasks.all %}
+		{% for task in worker.get_all_tasks %}
 			<li>
 				<a href="{% url 'tasks:task-detail' pk=task.id %}">
 					{{ task.name }}

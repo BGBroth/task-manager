@@ -13,6 +13,7 @@
 
 	<hr>
 
+	Projects:
 	<ul>
 		{% for project in team.projects.all %}
 			<li>
@@ -25,6 +26,7 @@
 
 	<hr>
 
+	Members:
 	<ul>
 		{% for worker in team.members.all %}
 			<li>
@@ -37,6 +39,7 @@
 
 	<hr>
 
+	Tasks:
 	<ul>
 		{% for project in team.projects.all %}
 			{% for task in project.tasks.all %}
