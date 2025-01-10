@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "debug_toolbar",
+    "crispy_forms",
+    "crispy_bootstrap4",
     "task_manager",
     "workers",
     "tasks",
@@ -132,3 +134,6 @@ ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DATE_INPUT_FORMATS = ['%d-%m-%Y', '%Y-%m-%d']
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
