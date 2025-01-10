@@ -1,5 +1,4 @@
 from django.db import models
-from workers.models import Worker
 from projects.models import Project
 
 class TaskType(models.Model):
