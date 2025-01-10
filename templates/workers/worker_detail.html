@@ -3,13 +3,15 @@
 {% block content %}
 	<h1>
 		{{ worker.username }}
-		<a href="{% url 'workers:worker-delete' pk=worker.id %}" class="btn btn-danger link-to-page">
-			Delete
-		</a>
+		{% if user.is_superuser %}
+			<a href="{% url 'workers:worker-delete' pk=worker.id %}" class="btn btn-danger link-to-page">
+				Delete
+			</a>
 
-		<a href="{% url 'workers:worker-update' pk=worker.id %}" class="btn btn-secondary link-to-page">
-			Update
-		</a>
+			<a href="{% url 'workers:worker-update' pk=worker.id %}" class="btn btn-secondary link-to-page">
+				Update
+			</a>
+		{% endif %}
 	</h1>
 	{{ worker.first_name }} {{ worker.last_name }}
 
