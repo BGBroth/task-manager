@@ -11,6 +11,7 @@ class WorkerCreationForm(UserCreationForm):
             "first_name",
             "last_name",
             "position",
+            "is_superuser",
         )
 
 
