@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>
+		{{ worker.username }}
+		{% if user.is_superuser %}
+			<a href="{% url 'workers:worker-delete' pk=worker.id %}" class="btn btn-danger link-to-page">
+				Delete
+			</a>
+
+			<a href="{% url 'workers:worker-update' pk=worker.id %}" class="btn btn-secondary link-to-page">
+				Update
+			</a>
+		{% endif %}
+	</h1>
+	{{ worker.first_name }} {{ worker.last_name }}
+
+	<hr>
+
+	<p>Position:
+		<a href="{% url 'workers:position-detail' pk=worker.position.id %}">
+			{{ worker.position.name }}
+		</a>
+	</p>
+
+	<hr>
+
+	Teams:
+	<ul>
+		{% for team in worker.teams.all %}
+			<li>
+				<a href="{% url 'projects:team-detail' pk=team.id %}">
+					{{ team.name }}
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+
+	<hr>
+
+	Tasks:
+	<ul>
+		{% for task in worker.get_all_tasks %}
+			<li>
+				<a href="{% url 'tasks:task-detail' pk=task.id %}">
+					{{ task.name }}
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

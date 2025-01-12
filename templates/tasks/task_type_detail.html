@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>
+		{{ task_type.name }}
+		<a href="{% url 'tasks:task-type-delete' pk=task_type.id %}" class="btn btn-danger link-to-page">
+			Delete
+		</a>
+
+		<a href="{% url 'tasks:task-type-update' pk=task_type.id %}" class="btn btn-secondary link-to-page">
+			Update
+		</a>
+	</h1>
+
+	<hr>
+
+	Tasks:
+	<ul>
+		{% for task in task_type.tasks.all %}
+			<li>
+				<a href="{% url 'tasks:task-detail' pk=task.id %}">
+					{{ task.name }}
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+
+{% endblock %}
